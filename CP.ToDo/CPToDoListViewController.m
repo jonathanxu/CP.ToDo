@@ -103,9 +103,10 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.toDoList removeObjectAtIndex:indexPath.row];
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
@@ -138,11 +139,16 @@
     }
 }
 
-//- (BOOL)textFieldShouldReturn:(UITextField *)textField
-//{
-//    NSLog(@"CPToDoListViewController.textFieldShouldReturn");
-//    [textField resignFirstResponder];
-//    return YES;
-//}
+// Return should dismiss keyboard, not allow blank new lines
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    NSCharacterSet *newlines = [NSCharacterSet newlineCharacterSet];
+    if ([text rangeOfCharacterFromSet:newlines].location == NSNotFound) {
+        return YES;
+    }
+    
+    [textView resignFirstResponder];
+    return NO;
+}
 
 @end
