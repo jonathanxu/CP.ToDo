@@ -47,12 +47,22 @@
 - (IBAction)touchAdd:(id)sender
 {
     [self.toDoList insertObject:@"" atIndex:0];
-    [self.tableView reloadData];
-    
-    // set focus on first row / cell
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 
+    // Do not use UITableView's reloadData here.
+    // It interferes with cell being active edited which needs to be saved using an out-of-date tag index.
+    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[firstIndexPath] withRowAnimation:UITableViewRowAnimationTop];
+
+    // update tag for all rows on screen
+    NSArray *visibleIndexPaths = [self.tableView indexPathsForVisibleRows];
+    for (NSIndexPath *currPath in visibleIndexPaths) {
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:currPath];
+        CPToDoCell *toDoCell = ((CPToDoCell *)cell);
+        toDoCell.toDoTextView.tag = currPath.row;
+    }
+    
+    // set focus on first row and bring up keyboard
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:firstIndexPath];
     CPToDoCell *toDoCell = ((CPToDoCell *)cell);
     [toDoCell.toDoTextView becomeFirstResponder];
 }
@@ -82,6 +92,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     CPToDoCell *toDoCell = ((CPToDoCell *)cell);
+    
+    NSLog(@"UITableViewCell width %.01f, height %.01f", toDoCell.bounds.size.width, toDoCell.bounds.size.height);
+    NSLog(@"UITextView width %.01f, height %.01f", toDoCell.toDoTextView.bounds.size.width, toDoCell.toDoTextView.bounds.size.height);
+    NSLog(@"UITextView font %@", toDoCell.toDoTextView.font);
+    
     toDoCell.toDoTextView.text = (NSString *)[self.toDoList objectAtIndex:indexPath.row];
     // tag will be used to identify row index when textFieldDidEndEditing is fired
     toDoCell.toDoTextView.tag = indexPath.row;
@@ -127,6 +142,33 @@
     return YES;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *text = self.toDoList[indexPath.row];
+    
+    // subtract tableView padding from padding
+    float width = self.tableView.bounds.size.width - 20;
+    
+    // Get a stock UITextView to calculate padding
+    UITextView *textView = [[UITextView alloc] init];
+    float textViewPadding = textView.textContainer.lineFragmentPadding * 2;
+    width -= textView.textContainer.lineFragmentPadding * 2;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:13]};
+    
+    CGRect frame = [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
+                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                   attributes:attributes
+                                      context:nil];
+    
+    // add UITextView padding, and UITableViewCell height padding
+    float height = ceil(frame.size.height + textViewPadding) + 20;
+    
+    NSLog(@"CPToDoListViewController.tableView:heightForRowAtIndexPath: index %d, height %0.0f, padding %0.01f", indexPath.row, height, textViewPadding);
+    
+    return height;
+}
+
 #pragma mark - UITextFieldDelegate
 
 - (void)textViewDidChange:(UITextView *)textView
@@ -136,6 +178,10 @@
         self.toDoList[textView.tag] = textView.text;
         NSLog(@"CPToDoListViewController.textViewDidChange: row %d, new value %@",
               textView.tag, textView.text);
+
+        // when text change, update tableView to cause it to recalculate height and redraw
+        [self.tableView beginUpdates];
+        [self.tableView endUpdates];
     }
 }
 

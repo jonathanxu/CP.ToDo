@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CP.ToDo/CPToDoListViewController.m"
-            timestampString = "412412168.467981"
+            timestampString = "412454739.438095"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "-touchAdd:"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

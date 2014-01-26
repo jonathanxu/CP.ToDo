@@ -13,15 +13,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ToDoCell" id="4HP-Rl-0p0" customClass="CPToDoCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="ToDoCell" id="4HP-Rl-0p0" customClass="CPToDoCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4HP-Rl-0p0" id="0Pn-aZ-SvX">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="84F-yl-rXB">
-                                            <rect key="frame" x="20" y="10" width="280" height="23"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84F-yl-rXB">
+                                            <rect key="frame" x="10" y="10" width="300" height="23"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -29,10 +29,10 @@
                                         </textView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="84F-yl-rXB" firstAttribute="top" secondItem="0Pn-aZ-SvX" secondAttribute="top" constant="10" id="CVZ-j5-XUA"/>
-                                        <constraint firstAttribute="bottom" secondItem="84F-yl-rXB" secondAttribute="bottom" constant="10" id="FVz-Tu-iyS"/>
-                                        <constraint firstItem="84F-yl-rXB" firstAttribute="leading" secondItem="0Pn-aZ-SvX" secondAttribute="leading" constant="20" id="Smb-p0-PUD"/>
-                                        <constraint firstAttribute="trailing" secondItem="84F-yl-rXB" secondAttribute="trailing" constant="20" id="ooj-k1-8OW"/>
+                                        <constraint firstItem="84F-yl-rXB" firstAttribute="top" secondItem="0Pn-aZ-SvX" secondAttribute="top" constant="10" id="8Dc-Av-utC"/>
+                                        <constraint firstAttribute="trailing" secondItem="84F-yl-rXB" secondAttribute="trailing" constant="10" id="MWL-TU-mIm"/>
+                                        <constraint firstAttribute="bottom" secondItem="84F-yl-rXB" secondAttribute="bottom" constant="10" id="Ybh-Tg-2bA"/>
+                                        <constraint firstItem="84F-yl-rXB" firstAttribute="leading" secondItem="0Pn-aZ-SvX" secondAttribute="leading" constant="10" id="mXO-hw-SdL"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
