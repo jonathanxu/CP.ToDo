@@ -20,7 +20,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4f4-dS-jab">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4f4-dS-jab">
                                             <rect key="frame" x="20" y="10" width="280" height="23"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -41,7 +41,11 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="To Do List" id="Pya-Xx-fea">
-                        <barButtonItem key="rightBarButtonItem" title="+" style="done" id="aVb-TL-mmT"/>
+                        <barButtonItem key="rightBarButtonItem" title="+" style="done" id="aVb-TL-mmT">
+                            <connections>
+                                <action selector="touchAdd:" destination="HZc-EE-bco" id="e5e-iI-1hl"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pge-P7-O4y" userLabel="First Responder" sceneMemberID="firstResponder"/>
