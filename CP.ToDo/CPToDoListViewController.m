@@ -148,14 +148,15 @@
     
     // subtract tableView padding from padding
     float width = self.tableView.bounds.size.width - 20;
-    
+
     // Get a stock UITextView to calculate padding
     UITextView *textView = [[UITextView alloc] init];
     float textViewPadding = textView.textContainer.lineFragmentPadding * 2;
     width -= textView.textContainer.lineFragmentPadding * 2;
-    
+
+    NSLog(@"CPToDoListViewController.tableView:heightForRowAtIndexPath: boundingRect width %0.0f", width);
+
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:13]};
-    
     CGRect frame = [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
                                       options:NSStringDrawingUsesLineFragmentOrigin
                                    attributes:attributes
