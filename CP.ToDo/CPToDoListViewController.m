@@ -28,23 +28,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     self.toDoList = [[CPToDoListModel alloc] init];
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.toDoList persist];
+    [super viewDidAppear:animated];
 }
 
-#pragma mark - Add
+#pragma mark - bar buttons
 - (IBAction)touchAdd:(id)sender
 {
     [self.toDoList addNewToDo];
@@ -66,17 +60,6 @@
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:firstIndexPath];
     CPToDoCell *toDoCell = ((CPToDoCell *)cell);
     [toDoCell.toDoTextView becomeFirstResponder];
-}
-
-- (IBAction)touchEdit:(id)sender {
-    UIBarButtonItem *button = (UIBarButtonItem *)sender;
-    if ([button.title isEqualToString:@"Edit"]) {
-        button.title = @"Done";
-        [self.tableView setEditing:YES animated:YES];
-    } else {
-        button.title = @"Edit";
-        [self.tableView setEditing:NO animated:YES];
-    }
 }
 
 #pragma mark - Table view data source
