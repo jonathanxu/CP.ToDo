@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CPToDoCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UITextField *toDoTextField;
+@property (weak, nonatomic) IBOutlet UITextView *toDoTextView;
 @end

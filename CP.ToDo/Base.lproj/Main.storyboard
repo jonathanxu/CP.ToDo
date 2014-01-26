@@ -20,22 +20,23 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4f4-dS-jab">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="84F-yl-rXB">
                                             <rect key="frame" x="20" y="10" width="280" height="23"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="4f4-dS-jab" firstAttribute="leading" secondItem="0Pn-aZ-SvX" secondAttribute="leading" constant="20" id="1Un-CQ-s0O"/>
-                                        <constraint firstItem="4f4-dS-jab" firstAttribute="top" secondItem="0Pn-aZ-SvX" secondAttribute="top" constant="10" id="Dp3-O0-q1T"/>
-                                        <constraint firstAttribute="bottom" secondItem="4f4-dS-jab" secondAttribute="bottom" constant="10" id="px6-6u-VoJ"/>
-                                        <constraint firstAttribute="trailing" secondItem="4f4-dS-jab" secondAttribute="trailing" constant="20" id="y4g-wR-FMP"/>
+                                        <constraint firstItem="84F-yl-rXB" firstAttribute="top" secondItem="0Pn-aZ-SvX" secondAttribute="top" constant="10" id="CVZ-j5-XUA"/>
+                                        <constraint firstAttribute="bottom" secondItem="84F-yl-rXB" secondAttribute="bottom" constant="10" id="FVz-Tu-iyS"/>
+                                        <constraint firstItem="84F-yl-rXB" firstAttribute="leading" secondItem="0Pn-aZ-SvX" secondAttribute="leading" constant="20" id="Smb-p0-PUD"/>
+                                        <constraint firstAttribute="trailing" secondItem="84F-yl-rXB" secondAttribute="trailing" constant="20" id="ooj-k1-8OW"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="toDoTextField" destination="4f4-dS-jab" id="sAD-hX-GTV"/>
+                                    <outlet property="toDoTextView" destination="84F-yl-rXB" id="XzP-Au-3qP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

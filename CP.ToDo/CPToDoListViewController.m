@@ -54,7 +54,7 @@
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 
     CPToDoCell *toDoCell = ((CPToDoCell *)cell);
-    [toDoCell.toDoTextField becomeFirstResponder];
+    [toDoCell.toDoTextView becomeFirstResponder];
 }
 
 - (IBAction)touchEdit:(id)sender {
@@ -82,11 +82,14 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     CPToDoCell *toDoCell = ((CPToDoCell *)cell);
-    toDoCell.toDoTextField.text = (NSString *)[self.toDoList objectAtIndex:indexPath.row];
+    toDoCell.toDoTextView.text = (NSString *)[self.toDoList objectAtIndex:indexPath.row];
     // tag will be used to identify row index when textFieldDidEndEditing is fired
-    toDoCell.toDoTextField.tag = indexPath.row;
+    toDoCell.toDoTextView.tag = indexPath.row;
     // set up delegate to this controller
-    toDoCell.toDoTextField.delegate = self;
+    toDoCell.toDoTextView.delegate = self;
+    
+    NSLog(@"CPToDoListViewController.tableView:cellForRowAtIndexPath: index %d, %@",
+          indexPath.row, toDoCell.toDoTextView.text);
     
     return cell;
 }
@@ -125,21 +128,21 @@
 
 #pragma mark - UITextFieldDelegate
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
+- (void)textViewDidChange:(UITextView *)textView
 {
-    NSLog(@"CPToDoListViewController.textFieldDidEndEditing: row %d", textField.tag);
-    if (textField.tag < [self.toDoList count]) {
-        self.toDoList[textField.tag] = textField.text;
-        NSLog(@"CPToDoListViewController.textFieldDidEndEditing: row %d, new value %@",
-              textField.tag, textField.text);
+    NSLog(@"CPToDoListViewController.textViewDidChange: row %d", textView.tag);
+    if (textView.tag < [self.toDoList count]) {
+        self.toDoList[textView.tag] = textView.text;
+        NSLog(@"CPToDoListViewController.textViewDidChange: row %d, new value %@",
+              textView.tag, textView.text);
     }
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    NSLog(@"CPToDoListViewController.textFieldShouldReturn");
-    [textField resignFirstResponder];
-    return YES;
-}
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    NSLog(@"CPToDoListViewController.textFieldShouldReturn");
+//    [textField resignFirstResponder];
+//    return YES;
+//}
 
 @end
