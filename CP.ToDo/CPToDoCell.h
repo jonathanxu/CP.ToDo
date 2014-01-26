@@ -10,5 +10,4 @@
 
 @interface CPToDoCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UITextField *toDoTextField;
-@property (strong, nonatomic) NSString *toDoValue;
 @end

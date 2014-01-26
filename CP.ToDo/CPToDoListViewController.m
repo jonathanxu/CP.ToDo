@@ -72,7 +72,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     CPToDoCell *toDoCell = ((CPToDoCell *)cell);
-    toDoCell.toDoValue = (NSString *)[self.toDoList objectAtIndex:indexPath.row];
+    toDoCell.toDoTextField.text = (NSString *)[self.toDoList objectAtIndex:indexPath.row];
+    // tag will be used to identify row index when textFieldDidEndEditing is fired
+    toDoCell.toDoTextField.tag = indexPath.row;
+    // set up delegate to this controller
     toDoCell.toDoTextField.delegate = self;
     
     return cell;
@@ -121,7 +124,12 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    NSLog(@"CPToDoListViewController.textFieldDidEndEditing");
+    NSLog(@"CPToDoListViewController.textFieldDidEndEditing: row %d", textField.tag);
+    if (textField.tag < [self.toDoList count]) {
+        self.toDoList[textField.tag] = textField.text;
+        NSLog(@"CPToDoListViewController.textFieldDidEndEditing: row %d, new value %@",
+              textField.tag, textField.text);
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
