@@ -40,13 +40,20 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="To Do List" id="Pya-Xx-fea">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="qtv-zl-chC">
+                            <connections>
+                                <action selector="touchEdit:" destination="HZc-EE-bco" id="nUe-Mg-8sP"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="+" style="done" id="aVb-TL-mmT">
                             <connections>
                                 <action selector="touchAdd:" destination="HZc-EE-bco" id="e5e-iI-1hl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pge-P7-O4y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
