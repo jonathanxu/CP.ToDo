@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E3CE90D1895CDF8008533CD /* CPToDoListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3CE90C1895CDF8008533CD /* CPToDoListModel.m */; };
 		3E57015918948EA4006561D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E57015818948EA4006561D2 /* Foundation.framework */; };
 		3E57015B18948EA4006561D2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E57015A18948EA4006561D2 /* CoreGraphics.framework */; };
 		3E57015D18948EA4006561D2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E57015C18948EA4006561D2 /* UIKit.framework */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E3CE90B1895CDF8008533CD /* CPToDoListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPToDoListModel.h; path = Models/CPToDoListModel.h; sourceTree = "<group>"; };
+		3E3CE90C1895CDF8008533CD /* CPToDoListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPToDoListModel.m; path = Models/CPToDoListModel.m; sourceTree = "<group>"; };
 		3E57015518948EA4006561D2 /* CP.ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CP.ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E57015818948EA4006561D2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3E57015A18948EA4006561D2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -90,6 +93,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E3CE90A1895CDC0008533CD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3E3CE90B1895CDF8008533CD /* CPToDoListModel.h */,
+				3E3CE90C1895CDF8008533CD /* CPToDoListModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		3E57014C18948EA4006561D2 = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +147,7 @@
 				3E57019118949DDE006561D2 /* CPToDoCell.h */,
 				3E57019218949DDE006561D2 /* CPToDoCell.m */,
 				3E57017018948EA4006561D2 /* Images.xcassets */,
+				3E3CE90A1895CDC0008533CD /* Models */,
 				3E57015F18948EA4006561D2 /* Supporting Files */,
 			);
 			path = CP.ToDo;
@@ -307,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E3CE90D1895CDF8008533CD /* CPToDoListModel.m in Sources */,
 				3E57019318949DDE006561D2 /* CPToDoCell.m in Sources */,
 				3E57019618949E03006561D2 /* CPToDoListViewController.m in Sources */,
 				3E57016518948EA4006561D2 /* main.m in Sources */,

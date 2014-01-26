@@ -8,9 +8,10 @@
 
 #import "CPToDoListViewController.h"
 #import "CPToDoCell.h"
+#import "Models/CPToDoListModel.h"
 
 @interface CPToDoListViewController ()
-@property (strong, nonatomic) NSMutableArray *toDoList;
+@property (strong, nonatomic) CPToDoListModel *toDoList;
 @end
 
 @implementation CPToDoListViewController
@@ -34,7 +35,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    self.toDoList = [[NSMutableArray alloc] init];
+    self.toDoList = [[CPToDoListModel alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,7 +47,7 @@
 #pragma mark - Add
 - (IBAction)touchAdd:(id)sender
 {
-    [self.toDoList insertObject:@"" atIndex:0];
+    [self.toDoList addNewToDo];
 
     // Do not use UITableView's reloadData here.
     // It interferes with cell being active edited which needs to be saved using an out-of-date tag index.
@@ -97,7 +98,7 @@
     NSLog(@"UITextView width %.01f, height %.01f", toDoCell.toDoTextView.bounds.size.width, toDoCell.toDoTextView.bounds.size.height);
     NSLog(@"UITextView font %@", toDoCell.toDoTextView.font);
     
-    toDoCell.toDoTextView.text = (NSString *)[self.toDoList objectAtIndex:indexPath.row];
+    toDoCell.toDoTextView.text = [self.toDoList getTodoAtIndex:indexPath.row];
     // tag will be used to identify row index when textFieldDidEndEditing is fired
     toDoCell.toDoTextView.tag = indexPath.row;
     // set up delegate to this controller
@@ -118,7 +119,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.toDoList removeObjectAtIndex:indexPath.row];
+        [self.toDoList removeToDoAtIndex:indexPath.row];
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -131,10 +132,7 @@
 {
     NSLog(@"CPToDoListViewController.moveRowAtIndexPath: from %d to %d",
           fromIndexPath.row, toIndexPath.row);
-    
-    NSString *temp = self.toDoList[toIndexPath.row];
-    self.toDoList[toIndexPath.row] = self.toDoList[fromIndexPath.row];
-    self.toDoList[fromIndexPath.row] = temp;
+    [self.toDoList moveToDoFromIndex:fromIndexPath.row toIndex:toIndexPath.row];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -144,7 +142,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *text = self.toDoList[indexPath.row];
+    NSString *text = [self.toDoList getTodoAtIndex:indexPath.row];
     
     // subtract tableView padding from padding
     float width = self.tableView.bounds.size.width - 20;
@@ -176,9 +174,9 @@
 {
     NSLog(@"CPToDoListViewController.textViewDidChange: row %d", textView.tag);
     if (textView.tag < [self.toDoList count]) {
-        self.toDoList[textView.tag] = textView.text;
         NSLog(@"CPToDoListViewController.textViewDidChange: row %d, new value %@",
               textView.tag, textView.text);
+        [self.toDoList updateAtIndex:textView.tag newValue:textView.text];
 
         // when text change, update tableView to cause it to recalculate height and redraw
         [self.tableView beginUpdates];
