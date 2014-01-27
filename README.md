@@ -17,3 +17,5 @@ Implementation Notes:
   - add UITextView's lineFragmentPadding
   - add UITableViewCell's padding, which was set up as auto layout constraints
   - had to call UITableView's beginUpdates and endUpdates after UITextView's content changed.
+- persistence
+  - use NSKeyedArchiver / NSKeyedUnarchiver to persist locally, on every change, including individual cell value change
