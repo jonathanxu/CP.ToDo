@@ -19,14 +19,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.toDoList = [[CPToDoListModel alloc] init];
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [self.toDoList persist];
-    [super viewDidAppear:animated];
+    self.toDoList = [[CPToDoListModel alloc] init];
 }
 
 #pragma mark - bar buttons
