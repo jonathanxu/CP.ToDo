@@ -117,7 +117,7 @@
 
     // Get a stock UITextView to calculate padding
     UITextView *textView = [[UITextView alloc] init];
-    float textViewPadding = textView.textContainer.lineFragmentPadding * 2;
+    CGFloat textViewPadding = textView.textContainer.lineFragmentPadding * 2;
     width -= textView.textContainer.lineFragmentPadding * 2;
 
     NSLog(@"CPToDoListViewController.tableView:heightForRowAtIndexPath: boundingRect width %0.0f", width);

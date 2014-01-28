@@ -29,7 +29,7 @@
         if (self.toDoList) {
             NSLog(@"CPToDoListModel.init: loaded existing");
         } else {
-            self.toDoList = [[[NSMutableArray alloc] init] mutableCopy];
+            self.toDoList = [[NSMutableArray alloc] init];
             NSLog(@"CPToDoListModel.init: new");
         }
     }
