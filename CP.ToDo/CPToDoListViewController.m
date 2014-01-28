@@ -113,7 +113,7 @@
     NSString *text = [self.toDoList getTodoAtIndex:indexPath.row];
     
     // subtract tableView padding from padding
-    float width = self.tableView.bounds.size.width - 20;
+    CGFloat width = self.tableView.bounds.size.width - 20;
 
     // Get a stock UITextView to calculate padding
     UITextView *textView = [[UITextView alloc] init];
@@ -129,7 +129,7 @@
                                       context:nil];
     
     // add UITextView padding, and UITableViewCell height padding
-    float height = ceil(frame.size.height + textViewPadding) + 20;
+    CGFloat height = ceil(frame.size.height + textViewPadding) + 20;
     
     NSLog(@"CPToDoListViewController.tableView:heightForRowAtIndexPath: index %d, height %0.0f, padding %0.01f", indexPath.row, height, textViewPadding);
     
